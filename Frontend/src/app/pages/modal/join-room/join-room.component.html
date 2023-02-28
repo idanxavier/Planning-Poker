@@ -1,0 +1,27 @@
+<div class="modal fade" tabindex="-1" id="joinRoomModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Join Room</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">
+                                *<i class="bi bi-pass"></i>
+                            </span>
+                            <input type="text" [(ngModel)]="roomId" class="form-control" placeholder="ex: Sprint #24"
+                                aria-label="Room name" aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button #closeModal type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="joinRoom()">Create room</button>
+            </div>
+        </div>
+    </div>
+</div>

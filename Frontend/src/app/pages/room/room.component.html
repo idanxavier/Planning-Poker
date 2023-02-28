@@ -1,0 +1,78 @@
+<div class="container-fluid pt-2">
+    <div class="row" *ngIf="this.room">
+        <div class="col-12 d-flex justify-content-center">
+            <h3>
+                {{room.name}}
+            </h3>
+        </div>
+        <div class="col-8">
+            <div class="row">
+                <div class="col-2 d-flex justify-content-center align-items-center card m-2 vote-card"
+                    *ngFor="let vote of votes" (click)="sendVote(vote)" style="width: 20vh; height: 30vh;">
+                    <div [innerHtml]="getVoteIcon(vote)" class="d-flex flex-row vote-icon"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="row" *ngIf="isUserAdmin()" style="height: 80%">
+                <div class="row">
+                    <div class="col-12">
+                        <label for="exampleFormControlInput1" class="form-label">Card title:</label>
+                        <input type="text" class="form-control" placeholder="[IDFUN-999] - Alterar fluxo"
+                            [(ngModel)]="cardTitle">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 d-flex flex-column">
+                        <label for="exampleFormControlTextarea1" class="form-label">Card description:</label>
+                        <textarea class="form-control" style="height: 30vh;" id="exampleFormControlTextarea1" rows="3"
+                            placeholder="lorem ipson dolom..." [(ngModel)]="cardDesc"></textarea>
+                        <button class="btn btn-dark mt-1" (click)="changeCard()">Change</button>
+                    </div>
+                </div>
+                <div class="row bg-danger text-white" *ngIf='this.error != ""'>
+                    {{this.error}}
+                </div>
+            </div>
+            <div class="row" *ngIf="!isUserAdmin() && this.authService.card" style="height: 80%">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-12 d-flex justify-content-center align-items-center">
+                            <h5>Card title:</h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 d-flex justify-content-center align-items-center">
+                            <h2><b>{{this.authService.card.title}}</b></h2>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-12 d-flex justify-content-center align-items-center">
+                            <h5>Card Description:</h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <span style="font-size: 1rem;">{{this.authService.card.description}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 overflow-auto" *ngFor="let user of room.users">
+                    <span class="fw-strong">{{user.name}}: </span>
+                    <span class="voteinfo" *ngIf="this.authService.card && this.authService.card.votes"
+                        [innerHTML]="getUserVote(user)">
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row" *ngIf="!this.room">
+    <div class="col-12">
+        Room not found, redirecting in 3 seconds...
+    </div>
+</div>

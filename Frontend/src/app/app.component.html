@@ -1,0 +1,44 @@
+<div class="container-fluid bg-dark" style="height:100vh; display: flex; align-items: center; justify-content: center;"
+    *ngIf="(this.user && !this.user.name) || !this.user">
+    <div class="row card">
+        <div class="col-12 card-title">
+            <h3>Join planning poker</h3>
+        </div>
+        <div class="col-12 card-body">
+            <div class="row">
+                <div class="col-12">
+                    Username:
+                </div>
+                <div class="col-12">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">
+                            *<i class="bi bi-pass"></i>
+                        </span>
+                        <input type="text" [(ngModel)]="this.username" class="form-control"
+                            placeholder="ex: John Carter" aria-label="username" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+            </div>
+            <div class="row" *ngIf="this.error != ''">
+                <div class="col-12 bg-danger text-white">
+                    {{this.error}}
+                </div>
+            </div>
+        </div>
+        <div class="col-12 card-footer">
+            <div class="row">
+                <div class="col-12 d-flex justify-content-end">
+                    <button type="button" class="btn btn-secondary mx-1" data-bs-dismiss="modal">Close</button>
+                    <button type="button" (click)="createUser()" class="btn btn-primary mx-1">Join</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div *ngIf="this.user && this.user.name">
+    <app-navbar></app-navbar>
+    <router-outlet></router-outlet>
+</div>

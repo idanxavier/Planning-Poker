@@ -1,0 +1,46 @@
+<div class="modal fade" tabindex="-1" id="newRoomModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Join Room</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">
+                                *<i class="bi bi-pass"></i>
+                            </span>
+                            <input type="text" [(ngModel)]="roomName" class="form-control" placeholder="ex: Sprint #24"
+                                aria-label="Room name" aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">
+                                *<i class="bi bi-person-gear"></i>
+                            </span>
+                            <select class="form-select" id="floatingSelect" [(ngModel)]="roomtype"
+                                aria-label="Floating label select example">
+                                <option selected>Select a planning style</option>
+                                <option value="1">Only development team</option>
+                                <option value="2">Only quality assurance team</option>
+                                <option value="3">Development & quality assurance team</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12 bg-danger text-white" *ngIf="this.error">
+                        Room name and room style is required.
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button #closeModal type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="createRoom()">Create room</button>
+            </div>
+        </div>
+    </div>
+</div>
